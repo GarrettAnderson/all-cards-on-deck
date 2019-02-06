@@ -36,6 +36,9 @@ const shuffleDeck = () => {
 
 const dealCard = () => {
   // click on card to display a single value of shuffleDeck array
+  dealtCard = deck.shift()
+  // let cardDealt = document.createElement('li')
+  document.querySelector('.card-dealt').textContent = dealtCard
 }
 
 const main = () => {
