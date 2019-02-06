@@ -1,5 +1,5 @@
-let faces = [ 2, 3, 4, 5, 6, 7, 8, 9, 10, 'J', 'Q', 'K', 'A' ]
-let suits = [ 'H', 'D', 'C', 'S' ]
+let faces = [ 2, 3, 4, 5, 6, 7, 8, 9, 10, 'Jack', 'Queen', 'King', 'Ace' ]
+let suits = [ 'Hearts', 'Diamonds', 'Clubs', 'Spades' ]
 let deck = []
 
 const buildDeck = () => {
@@ -8,7 +8,8 @@ const buildDeck = () => {
 
     for (let j = 0; j < faces.length; j++) {
       console.log(suits[i] + faces[j])
-      deck.push(suits[i] + faces[j])
+      let cardDealt = document.createElement('li')
+      deck.push(faces[j] + ' of ' + suits[i])
     }
   }
   console.log(deck)
@@ -51,4 +52,4 @@ const main = () => {
 document.addEventListener('DOMContentLoaded', main)
 
 // add Event Listener to deal a card on button click
-document.querySelector('.deal-card').addEventListener('click', dealCard)
+document.querySelector('.deck-of-cards-facedown').addEventListener('click', dealCard)
