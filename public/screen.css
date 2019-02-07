@@ -38,3 +38,8 @@ body {
 .deck-of-cards-faceup ul {
   list-style: none;
 }
+
+.spades-card-image {
+  content: '\U+2660';
+  background-color: red;
+}
