@@ -43,3 +43,19 @@ body {
   content: '\U+2660';
   background-color: red;
 }
+
+.spades {
+  color: black;
+}
+
+.hearts {
+  color: red;
+}
+
+.diamonds {
+  color: pink;
+}
+
+.clubs {
+  color: green;
+}

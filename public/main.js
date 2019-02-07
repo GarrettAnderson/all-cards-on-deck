@@ -34,19 +34,19 @@ const shuffleDeck = () => {
 const dealCard = () => {
   // click on card to display a single value of shuffleDeck array
   console.log(suits)
-  for (let i = 0; i < suits.length; i++) {
-    // console.log(suits[i])
-    for (let j = 0; j < faces.length; j++) {
-      // console.log(faces[1])
-    }
-  }
+  // for (let i = 0; i < suits.length; i++) {
+  //   // console.log(suits[i])
+  //   for (let j = 0; j < faces.length; j++) {
+  //     // console.log(faces[1])
+  //   }
+  // }
   dealtCard = deck.shift()
   console.log(deck)
   // let cardDealt = document.createElement('li')
   document.querySelector('.card-dealt-value').textContent = dealtCard
-  if (dealtCard.includes('Spades')) {
-    console.log(5)
-    document.querySelector('.card-suit-icon').classList.add('spades-card-image')
+  // if (dealtCard.includes('Spades')) {
+  //   console.log(5)
+  //   document.querySelector('.card-suit-icon').classList.add('spades-card-image')
   }
 }
 
