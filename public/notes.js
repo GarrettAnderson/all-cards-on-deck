@@ -1,6 +1,8 @@
 const rank = [ 2, 3, 4, 5, 6, 7, 8, 9, 10, 'Jack', 'Queen', 'King', 'Ace' ]
 const suit = [ 'Hearts', 'Diamonds', 'Clubs', 'Spades' ]
 const deck = []
+const dealerHand = []
+const playerHand = []
 
 // Problem?
 
@@ -51,19 +53,19 @@ const main = () => {
     deck[i] = cardAtPositionJ
   }
   console.log(deck)
+}
 
-  const dealCard = () => {
-    // remove the 1st card from the deck
-    const drawnCard = deck.shift()
+const dealCard = () => {
+  // remove the 1st card from the deck
+  const drawnCard = deck.shift()
 
-    // add to player had
+  // add to player hand
 
-    // update the UI
-    const cardElement = document.createElement('li')
-    cardElement.textContent = drawnCard.rank + ' of ' + cardElement.textContent.suit
-    cardElement.classList.add(drawnCard.suit.toLowerCase()) // a class is added to li specific to what the suit is: if suit is hearts, class hearts will be applied
-    document.querySelector('.player-hand').appendChild(cardElement)
-  }
+  // update the UI
+  const cardElement = document.createElement('li')
+  cardElement.textContent = drawnCard.rank + ' of ' + cardElement.textContent.suit
+  cardElement.classList.add(drawnCard.suit.toLowerCase()) // a class is added to li specific to what the suit is: if suit is hearts, class hearts will be applied
+  document.querySelector('.player-hand').appendChild(cardElement)
 }
 
 document.addEventListener('DOMContentLoaded', main)

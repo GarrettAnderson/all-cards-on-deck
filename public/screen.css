@@ -41,6 +41,7 @@ body {
 
 .spades-card-image {
   content: '\U+2660';
+  position: relative;
   background-color: red;
 }
 
