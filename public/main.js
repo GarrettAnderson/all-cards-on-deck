@@ -51,14 +51,16 @@ const dealCard = () => {
       console.log(i)
       document.querySelector('.player-1-rank').textContent = dealtCard.rank + ' of ' + dealtCard.suit
       playerHand.push(dealtCard)
-    } else {
+    } else if (i % 2) {
       console.log(i)
-      let nextDealtCard = deck.shift()
-      document.querySelector('.player-2-rank').textContent = nextDealtCard.rank + ' of '
-      document.querySelector('.player-2-suit').textContent = nextDealtCard.suit
-      dealerHand.push(nextDealtCard)
+      dealtCard = deck.shift()
+      document.querySelector('.player-2-rank').textContent = dealtCard.rank + ' of '
+      document.querySelector('.player-2-suit').textContent = dealtCard.suit
+      dealerHand.push(dealtCard)
     }
   }
+  console.log(playerHand)
+  console.log(dealerHand)
 }
 
 const main = () => {
