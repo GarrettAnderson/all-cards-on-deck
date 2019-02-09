@@ -41,24 +41,26 @@ const shuffleDeck = () => {
 const dealCard = () => {
   // click on card to display a single value of shuffleDeck array
   console.log(suits)
-  let player1
-  let player2
-  for (let i = 0; i < 4; i++) {
-    let dealtCard = deck.shift()
-    console.log(dealtCard)
-    if (i % 2 === 0) {
-      // if (deck.length > 0) {
-      console.log(i)
-      document.querySelector('.player-1-rank').textContent = dealtCard.rank + ' of ' + dealtCard.suit
-      playerHand.push(dealtCard)
-    } else if (i % 2) {
-      console.log(i)
-      dealtCard = deck.shift()
-      document.querySelector('.player-2-rank').textContent = dealtCard.rank + ' of '
-      document.querySelector('.player-2-suit').textContent = dealtCard.suit
-      dealerHand.push(dealtCard)
-    }
-  }
+  // for (let i = 0; i < 4; i++) {
+  let dealtCard = deck.shift()
+  playerHand.push(dealtCard)
+  let nextDealtCard = deck.shift()
+  dealerHand.push(nextDealtCard)
+  console.log(dealtCard)
+  console.log(nextDealtCard)
+  // if (dealtCard % 2 === 0) {
+  //   // if (deck.length > 0) {
+  //   console.log(i)
+  //   document.querySelector('.player-1-rank').textContent = dealtCard.rank + ' of ' + dealtCard.suit
+  //   playerHand.push(dealtCard)
+  // } else if (dealtCard % 2 !== 0) {
+  //   console.log(i)
+  //   let nextDealtCard = deck.shift()
+  //   document.querySelector('.player-2-rank').textContent = nextDealtCard.rank + ' of '
+  //   document.querySelector('.player-2-suit').textContent = nextDealtCard.suit
+  //   dealerHand.push(nextDealtCard)
+  //   // }
+  // }
   console.log(playerHand)
   console.log(dealerHand)
 }
