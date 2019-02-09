@@ -1,4 +1,19 @@
-let faces = [ 2, 3, 4, 5, 6, 7, 8, 9, 10, 'Jack', 'Queen', 'King', 'Ace' ]
+let faces = [
+  { value: 2, face: 2 },
+  { value: 3, face: 3 },
+  { value: 4, face: 4 },
+  { value: 5, face: 5 },
+  { value: 6, face: 6 },
+  { value: 7, face: 7 },
+  { value: 8, face: 8 },
+  { value: 9, face: 9 },
+  { value: 10, face: 10 },
+  { value: 10, face: 'Jack' },
+  { value: 10, face: 'Queen' },
+  { value: 10, face: 'King' },
+  { value: 11, face: 'Ace' }
+]
+
 let suits = [ 'Hearts', 'Diamonds', 'Clubs', 'Spades' ]
 let deck = []
 let dealerHand = []
@@ -13,7 +28,8 @@ const buildDeck = () => {
       // deck.push(faces[j] + ' of ' + suits[i])
       const card = {
         suit: suits[i],
-        rank: faces[j]
+        rank: faces[j].value,
+        face: faces[j].face
       }
       deck.push(card)
     }
@@ -41,26 +57,24 @@ const shuffleDeck = () => {
 const dealCard = () => {
   // click on card to display a single value of shuffleDeck array
   console.log(suits)
-  // for (let i = 0; i < 4; i++) {
   let dealtCard = deck.shift()
   playerHand.push(dealtCard)
   let nextDealtCard = deck.shift()
   dealerHand.push(nextDealtCard)
   console.log(dealtCard)
   console.log(nextDealtCard)
-  // if (dealtCard % 2 === 0) {
-  //   // if (deck.length > 0) {
-  //   console.log(i)
-  //   document.querySelector('.player-1-rank').textContent = dealtCard.rank + ' of ' + dealtCard.suit
-  //   playerHand.push(dealtCard)
-  // } else if (dealtCard % 2 !== 0) {
-  //   console.log(i)
-  //   let nextDealtCard = deck.shift()
-  //   document.querySelector('.player-2-rank').textContent = nextDealtCard.rank + ' of '
-  //   document.querySelector('.player-2-suit').textContent = nextDealtCard.suit
-  //   dealerHand.push(nextDealtCard)
-  //   // }
-  // }
+  console.log(playerHand)
+  console.log(dealerHand)
+}
+
+const hitMeDeal = () => {
+  console.log(suits)
+  let dealtCard = deck.shift()
+  playerHand.push(dealtCard)
+  let nextDealtCard = deck.shift()
+  dealerHand.push(nextDealtCard)
+  console.log(dealtCard)
+  console.log(nextDealtCard)
   console.log(playerHand)
   console.log(dealerHand)
 }
@@ -76,3 +90,5 @@ document.addEventListener('DOMContentLoaded', main)
 
 // add Event Listener to deal a card on button click
 document.querySelector('.deck-of-cards-facedown').addEventListener('click', dealCard)
+
+document.querySelector('.hit-me-button').addEventListener('click', hitMeDeal)
