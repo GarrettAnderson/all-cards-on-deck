@@ -14,10 +14,14 @@ let faces = [
   { value: 11, face: 'Ace' }
 ]
 
-let suits = [ 'Hearts', 'Diamonds', 'Clubs', 'Spades' ]
+let suits = [ 'hearts', 'diamonds', 'clubs', 'spades' ]
 let deck = []
 let dealerHand = []
 let playerHand = []
+let playerScore = []
+let dealerScore = []
+let players = new Array()
+let currentPlayer = 0
 
 const buildDeck = () => {
   for (let i = 0; i < suits.length; i++) {
@@ -54,41 +58,152 @@ const shuffleDeck = () => {
   console.log(deck)
 }
 
-const dealCard = () => {
+// const createPlayers = (num) => {
+//   players = new Array()
+//   for (let i = 0; i <= num; i++) {
+//     let hand = new Array()
+//     let player = { Name: 'Player ' + i, ID: i, Points: 0, Hand: hand }
+//     players.push(player)
+//   }
+//   console.log(players)
+// }
+
+// deal card to player
+const dealPlayerHand = () => {
   // click on card to display a single value of shuffleDeck array
-  console.log(suits)
+  // for (let i = 0; i < 2; i++) {
+  // for (let j = 0; j < players.length; j++) {
   let dealtCard = deck.shift()
   playerHand.push(dealtCard)
+  console.log(playerHand)
+  let targetPlayerHand = document.querySelector('.card-dealt-list')
+  let image = document.createElement('img')
+  image.src = '/images/' + dealtCard.rank + '_of_' + dealtCard.suit + '.svg'
+  // }
+  targetPlayerHand.appendChild(image)
+}
+//   let targetPlayerHand = document.querySelector('.card-dealt-list')
+//   let image = document.createElement('img')
+//   image.src = '/images/' + playerHand[i].rank + '_of_' + playerHand[i].suit + '.svg'
+// }
+
+// Deal Card to dealer
+const dealDealerHand = () => {
   let nextDealtCard = deck.shift()
   dealerHand.push(nextDealtCard)
-  console.log(dealtCard)
-  console.log(nextDealtCard)
-  console.log(playerHand)
-  console.log(dealerHand)
+  let targetDealerHand = document.querySelector('.card-2-dealt-list')
+  let image = document.createElement('img')
+  image.src = '/images/' + nextDealtCard.rank + '_of_' + nextDealtCard.suit + '.svg'
+  targetDealerHand.appendChild(image)
 }
 
-const hitMeDeal = () => {
-  console.log(suits)
-  let dealtCard = deck.shift()
-  playerHand.push(dealtCard)
-  let nextDealtCard = deck.shift()
-  dealerHand.push(nextDealtCard)
-  console.log(dealtCard)
-  console.log(nextDealtCard)
-  console.log(playerHand)
-  console.log(dealerHand)
+const countPlayerScore = () => {
+  if (playerHand.length === 2) {
+    playerScore = playerHand[0].rank + playerHand[1].rank
+    document.querySelector('.player-1-score').textContent = playerScore
+  } else if (playerHand.length === 3) {
+    playerScore = playerHand[0].rank + playerHand[1].rank + playerHand[2]
+    document.querySelector('.player-1-score').textContent = playerScore
+  } else if (playerHand.length === 3) {
+    playerScore = playerHand[0].rank + playerHand[1].rank + playerHand[2] + playerHand[3]
+    document.querySelector('.player-1-score').textContent = playerScore
+  }
 }
+
+const countDealerScore = () => {
+  if (dealerHand.length === 2) {
+    dealerScore = dealerHand[0].rank + dealer[1].rank
+    document.querySelector('.player-2-score').textContent = playerScore
+  } else if (dealerHand.length === 3) {
+    playerScore = dealerHand[0].rank + dealerHand[1].rank + dealerHand[2]
+    document.querySelector('.player-1-score').textContent = playerScore
+  } else if (dealerHand.length === 3) {
+    playerScore = dealerHand[0].rank + dealerHand[1].rank + dealerHand[2] + dealerHand[3]
+    document.querySelector('.player-1-score').textContent = playerScore
+  }
+}
+
+// function for the stay button or end the game
+const endPlay = () => {
+  console.log('stya button was pushed')
+  dealDealerHand()
+  countDealerScore()
+  if (dealerScore < 17) {
+    endPlay()
+  } else if (dealerScore >= 17 && dealerScore <= 21) {
+    determineWinner()
+  } else if (dealerScore > 21) {
+    console.log('Dealer has busted')
+  }
+}
+
+// add card to deck when hit me button is pressed
+const hitMe = () => {
+  console.log('Hit Me')
+  dealPlayerHand()
+  countPlayerScore()
+  if (playerScore <= 21) {
+    console.log('Hit or Stay')
+  } else if (playerScore >= 21) {
+    console.log('you busted')
+  }
+}
+
+const renderCard = (card, player) => {
+  let hand
+}
+
+// check who is the winner of the round
+const determineWinner = () => {
+  if (playerScore > dealerScore) {
+    console.log('Player has won the game.')
+  } else if (playerScore === dealerScore) {
+    console.log('There is a tie. No one has won.')
+  } else if (playerScore < dealerScore) {
+    console.log('Dealer has won the game.')
+  }
+}
+// console.log(suits)
+// let dealtCard = deck.shift()
+// playerHand.push(dealtCard)
+// let nextDealtCard = deck.shift()
+// dealerHand.push(nextDealtCard)
+// console.log(dealtCard)
+// console.log(nextDealtCard)
+// console.log(playerHand)
+// console.log(dealerHand)
+
+// const hitMeDeal = () => {
+//   console.log(suits)
+//   let dealtCard = deck.shift()
+//   playerHand.push(dealtCard)
+//   let nextDealtCard = deck.shift()
+//   dealerHand.push(nextDealtCard)
+//   console.log(dealtCard)
+//   console.log(nextDealtCard)
+//   console.log(playerHand)
+//   console.log(dealerHand)
+// }
+
+// create players function
 
 const main = () => {
   // call buildDeck function
   buildDeck()
   // call shuffleDeck function
   shuffleDeck()
+  // create players on page load
+  // createPlayers()
+}
+
+const dealBothPlayers = () => {
+  dealPlayerHand()
+  dealDealerHand()
 }
 
 document.addEventListener('DOMContentLoaded', main)
 
 // add Event Listener to deal a card on button click
-document.querySelector('.deck-of-cards-facedown').addEventListener('click', dealCard)
+document.querySelector('.deck-of-cards-facedown').addEventListener('click', dealBothPlayers)
 
-document.querySelector('.hit-me-button').addEventListener('click', hitMeDeal)
+document.querySelector('.hit-me-button').addEventListener('click', hitMe)
